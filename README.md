@@ -1,6 +1,7 @@
-# Employee Management System – Backend
+#Employee Management System – Backend
 
-This is the **backend service** for the Employee Management System, built using **Java 21** and **Spring Boot**, with **Keycloak authentication** and role-based access control.
+This repository contains the backend service for the Employee Management System, developed using Java 21 and Spring Boot.
+It exposes secure REST APIs with Keycloak-based authentication, role-based access control, and modular enterprise-level architecture.
 
 ---
 
@@ -8,7 +9,7 @@ This is the **backend service** for the Employee Management System, built using 
 
 - Java 21
 - Spring Boot
-- Spring Security
+- Spring Security (OAuth2 Resource Server – JWT)
 - Keycloak (Authentication & Authorization)
 - Hibernate / JPA
 - MySQL
@@ -17,9 +18,15 @@ This is the **backend service** for the Employee Management System, built using 
 
 ---
 
-## 🔐 Authentication (Keycloak)
+## 🔐 Authentication & Authorization (Keycloak)
 
 The backend uses **Keycloak** for secure authentication and authorization.
+
+**Keycloak Setup**
+-Keycloak URL: http://localhost:8080
+-Realm: employee-realm
+-Authentication: JWT (Bearer Token)
+-Integration: Spring Security OAuth2 Resource Server
 
 ### Roles
 - ADMIN
@@ -55,35 +62,99 @@ The backend uses **Keycloak** for secure authentication and authorization.
 - Attendance summaries
 - Employee statistics
 
+📁 Profile Management
+-Personal information
+-Education details
+-Professional experience
+-Bank details
+-Document uploads
+
 ---
 
 ## 📁 Project Structure
 src/main/java
 └── com.example.employeebackend
-├── controller
-├── service
-├── repository
-├── entity
-├── security
-└── config
+    ├── attendance
+    │   ├── controller
+    │   ├── service
+    │   ├── repository
+    │   └── entity
+    ├── auth
+    ├── controller
+    ├── dashboard
+    ├── service
+    ├── repository
+    ├── entity
+    ├── config
+    ├── security
+    └── exception
 
 
 ---
 
-## ⚙️ Configuration
+## ⚙️ Application Configuration
 
-Update `application.properties`:
+Server Configuration
 
 ```properties
-server.port=8080
+server.port=8081
 
-spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
+Database Configuration (MySQL)
+
+spring.datasource.url=jdbc:mysql://localhost:3307/employee_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 spring.datasource.username=root
-spring.datasource.password=your_password
+spring.datasource.password=YOUR_PASSWORD
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
+JPA / Hibernate
+
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.open-in-view=true
 
-keycloak.realm=employee-realm
-keycloak.auth-server-url=http://localhost:8080
-keycloak.resource=employee-backend
-keycloak.public-client=true
+File Upload Configuration
+
+spring.servlet.multipart.enabled=true
+spring.servlet.multipart.max-file-size=5MB
+spring.servlet.multipart.max-request-size=5MB
+
+Keycloak (JWT Resource Server)
+
+spring.security.oauth2.resource-server.jwt.issuer-uri=http://localhost:8080/realms/employee-realm
+
+**How to Run the Backend**
+
+*Prerequisites
+
+-Java 21
+-Maven
+-MySQL running on port 3307
+-Keycloak running on port 8080
+-Realm created: employee-realm
+
+*Steps
+BASH
+-mvn clean install
+-mvn spring-boot:run
+
+*Backend URL
+-http://localhost:8081
+
+🔗 Frontend Integration
+
+This backend is designed to work with an Angular frontend secured by Keycloak.
+All API requests must include a JWT token in the Authorization header:
+-Authorization: Bearer <access_token>
+
+🧪 API Testing
+
+You can test APIs using:
+
+-Postman
+-Swagger (can be added)
+-Angular frontend
+
+Ensure Keycloak is running and a valid token is used.
+
+
