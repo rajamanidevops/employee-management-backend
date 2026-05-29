@@ -1,20 +1,20 @@
-#Employee Management System – Backend
+# Employee Management System – Backend
 
-This repository contains the backend service for the Employee Management System, developed using Java 21 and Spring Boot.
-It exposes secure REST APIs with Keycloak-based authentication, role-based access control, and modular enterprise-level architecture.
+This repository contains the **backend service** for the Employee Management System, developed using **Java 21** and **Spring Boot**.  
+It exposes secure REST APIs with **Keycloak-based authentication**, **role-based access control**, and a **modular enterprise-level architecture**.
 
 ---
 
 ## 🚀 Tech Stack
 
-- Java 21
-- Spring Boot
-- Spring Security (OAuth2 Resource Server – JWT)
-- Keycloak (Authentication & Authorization)
-- Hibernate / JPA
-- MySQL
-- Maven
-- REST APIs
+- Java 21  
+- Spring Boot  
+- Spring Security (OAuth2 Resource Server – JWT)  
+- Keycloak (Authentication & Authorization)  
+- Hibernate / JPA  
+- MySQL  
+- Maven  
+- REST APIs  
 
 ---
 
@@ -22,56 +22,58 @@ It exposes secure REST APIs with Keycloak-based authentication, role-based acces
 
 The backend uses **Keycloak** for secure authentication and authorization.
 
-**Keycloak Setup**
--Keycloak URL: http://localhost:8080
--Realm: employee-realm
--Authentication: JWT (Bearer Token)
--Integration: Spring Security OAuth2 Resource Server
+### Keycloak Setup
+- **Keycloak URL:** `http://localhost:8080`
+- **Realm:** `employee-realm`
+- **Authentication:** JWT (Bearer Token)
+- **Integration:** Spring Security OAuth2 Resource Server
 
 ### Roles
-- ADMIN
-- MANAGER
-- EMPLOYEE
+- ADMIN  
+- MANAGER  
+- EMPLOYEE  
 
 ### Security Features
-- JWT token based authentication
-- Role-based API access
-- Centralized login using Keycloak
-- Spring Security integration
+- JWT token-based authentication  
+- Role-based API access  
+- Centralized login using Keycloak  
+- Spring Security integration  
 
 ---
 
 ## 📦 Backend Modules
 
 ### 👤 Employee Management
-- Create, update, delete employees
-- Manage employee profiles
-- Assign roles and departments
+- Create, update, and delete employees  
+- Manage employee profiles  
+- Assign roles and departments  
 
 ### 🕒 Attendance Management
-- Mark daily attendance
-- Attendance status: PRESENT / ABSENT / LEAVE
-- Manager & Admin approval flows
+- Mark daily attendance  
+- Attendance status: `PRESENT`, `ABSENT`, `LEAVE`  
+- Manager and Admin approval workflows  
 
 ### 🏢 Department Management
-- Create and manage departments
-- Map employees to departments
+- Create and manage departments  
+- Map employees to departments  
 
 ### 📊 Dashboard
-- Admin dashboard overview
-- Attendance summaries
-- Employee statistics
+- Admin dashboard overview  
+- Attendance summaries  
+- Employee statistics  
 
-📁 Profile Management
--Personal information
--Education details
--Professional experience
--Bank details
--Document uploads
+### 📁 Profile Management
+- Personal information  
+- Education details  
+- Professional experience  
+- Bank details  
+- Document uploads  
 
 ---
 
 ## 📁 Project Structure
+
+```text
 src/main/java
 └── com.example.employeebackend
     ├── attendance
